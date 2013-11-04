@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+	<h1>GeneToolKit Manual</h1>
+	<h2>Developed By Michael MacDougall</h2>
+		<h2>Introduction</h2>
+			GeneToolKit is a tool that allows the user to compile a list of sequences, generate a FASTA file, and perform a multiple sequence alignment of the generated FASTA file.
+			This multiple sequence alignment can then be sent via Email in ALN format.
+			This toolkit will offer users a far more convienient and simple interface to perform research anywhere with an active internet connection.
+		<h2>Features</h2>
+			<ul>
+				<li>FASTA Generation</li>
+				<li>Header and Sequence Editing</li>
+				<li>Sequence Specific Notes</li>
+				<li>ClustalW Integration</li>
+                <li>FASTA Export via Email</li>
+				<li>ALN Export via Email</li>
+				<li>Phylogenic Tree Information</li>
+				<li>Simple Graphical User Interface</li>
+			</ul>
+		<h2>How-To</h2>
+			When GeneToolKit is first launched the user is presented with a two-tab interface with the Sequences tab selected by default.
+			From the Sequence List tab the user has ability to view, edit and add desired sequences.
+			<h3>Adding Sequences</h3>
+				In order to add a sequence the user must press the '+' button on the top-right corner of the screen and then is presented with the Add Sequence screen.
+				Two options are available at this point: querying the NCBI database using an accession number and entering a sequence manually.
+				After the information is entered correctly tapping the 'Add Sequence' button will close the current screen and return the user to the main Sequence List tab.
+            <h3>Emailing FASTA</h3>
+                After adding desired sequences, the user can press the 'Email FASTA' button in the top-left corner and an email message will appear with the FASTA file automatically attached.
+			<h3>Multiple Sequence Alignment</h3>
+				Once the desired sequences are added to the Sequences the user can select the ClustalW tab to align all sequences.
+				After a few seconds, the resulting multiple sequence alignment will appear in the window along with the phylogenic tree information.
+			<h3>Emailing ALN</h3>
+				After performing a multiple sequence alignment using the ClustalW tab, the user can then press the 'Email Alignment' button to open up a blank email with the alignment attached.
+		<h2>Technical Details</h2>
+			<h3>Data Model</h3>
+				The data model consists of a Singleton manager that contains a NSMutableArray that allows for global access using Apple's Grand Central Dispatch (GCD) as a mediator.
+				The NSMutableArray holds a custom Sequence object that holds the name/accession numner, the FASTA header information, sequence, and sequence-specific notes.
+			<h3>Sequence Retrieval</h3>
+				The sequence retrieval used on the Add Sequence screen is provided by the TogoWS: REST service located at: http://togows.dbcls.jp/site/en/rest.html
+			<h3>ClustalW Integration and Phylogenic Tree Information</h3>
+				The ClustalW integration and phylogenic tree information is provided by MSU's Genebee. 
+				A POST method is used with a NSMutableURLRequest to retrieve the data. 
+				The data is then displayed in a UIWebView to allow for HTML styling and formatting.
+</body>
+</html>

@@ -1,6 +1,3 @@
-<!DOCTYPE HTML>
-<html>
-<body>
 	<h1>GeneToolKit Manual</h1>
 	<h2>Developed By Michael MacDougall</h2>
 		<h2>Introduction</h2>
@@ -39,5 +36,3 @@
 				The ClustalW integration and phylogenic tree information is provided by MSU's Genebee. 
 				A POST method is used with a NSMutableURLRequest to retrieve the data. 
 				The data is then displayed in a UIWebView to allow for HTML styling and formatting.
-</body>
-</html>

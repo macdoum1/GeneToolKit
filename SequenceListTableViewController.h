@@ -10,6 +10,7 @@
 #import "SingletonManager.h"
 #import "Sequence.h"
 #import "SequenceDetailViewController.h"
+#import "SequenceCell.h"
 #import <MessageUI/MessageUI.h>
 
 
@@ -21,6 +22,8 @@
 //Variable to hold MFMailComposeViewController Picker
 @property (nonatomic, retain) MFMailComposeViewController *picker;
 
+
+- (IBAction)includeSequenceChange:(id)sender;
 - (IBAction)emailFASTA:(id)sender;
 
 @end

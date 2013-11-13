@@ -16,5 +16,6 @@
 @property (nonatomic, retain) NSString *header;
 @property (nonatomic, retain) NSString *sequence;
 @property (nonatomic, retain) NSString *notes;
+@property (nonatomic) BOOL included;
 
 @end

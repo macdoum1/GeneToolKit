@@ -59,6 +59,7 @@
     NSURLConnection *connection = [[NSURLConnection alloc]initWithRequest:searchRequest delegate:self];
     if(connection)
     {
+        NSLog(@"Here");
     }
     else
     {
@@ -91,6 +92,7 @@
         tempSequence.sequence = outputField.text;
         tempSequence.header = header.text;
         tempSequence.notes = notes.text;
+        tempSequence.included = true;
         [sharedManager.sequenceArray addObject:tempSequence];
         
         //Close Pushed View
@@ -141,6 +143,7 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     [receivedData setLength:0];
+    NSLog(@"did receive response");
 }
 //*********************************************************
 
@@ -167,6 +170,7 @@
 //***NSURLConnection didFinishLoading Delegate Method***
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
+    NSLog(@"Finished loading");
     NSString *dataStr = [[NSString alloc] initWithData:receivedData encoding:NSUTF8StringEncoding];
     outputField.text = dataStr;
     NSArray *separatedComponents = [dataStr componentsSeparatedByString:@"\n"];

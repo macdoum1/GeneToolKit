@@ -55,12 +55,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    SequenceCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     int currentRow = indexPath.row;
     Sequence *tempSeq = [sharedManager.sequenceArray objectAtIndex:currentRow];
     
-    cell.textLabel.text = tempSeq.name;
-    cell.detailTextLabel.text = tempSeq.header;
+    cell.title.text = tempSeq.name;
+    cell.subTitle.text = tempSeq.header;
+    cell.includeSwitch.tag = indexPath.row;
+    if(tempSeq.included == false)
+    {
+        cell.includeSwitch.on = false;
+    }
+    else
+    {
+        cell.includeSwitch.on = true;
+    }
     
     return cell;
 }
@@ -126,6 +135,16 @@
     }
 }
 //**************
+
+//***Include Sequence Change***
+- (IBAction)includeSequenceChange:(id)sender
+{
+    Sequence *tempSequence = [sharedManager.sequenceArray objectAtIndex:((UISwitch *)sender).tag];
+    [sharedManager.sequenceArray removeObjectAtIndex:((UISwitch *)sender).tag];
+    tempSequence.included = false;
+    [sharedManager.sequenceArray addObject:tempSequence];
+}
+//*****************************
 
 //***MFMailComposeViewController Delegate didFinishWithResult Method
 -(void)mailComposeController:(MFMailComposeViewController *)mailer didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error

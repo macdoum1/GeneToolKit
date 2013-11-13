@@ -10,6 +10,6 @@
 
 @implementation Sequence
 
-@synthesize name, header, sequence, notes;
+@synthesize name, header, sequence, notes,included;
 
 @end

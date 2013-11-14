@@ -63,6 +63,7 @@
     }
     else
     {
+        // Push UIAlert for failed Connection
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Check Internet Connection"
                                                           message:@"Could Not Establish Connection"
                                                          delegate:nil
@@ -77,7 +78,8 @@
 - (IBAction)addSequence:(id)sender
 {
     if([accessionField.text isEqual: @""] || [outputField.text isEqual:@""])
-    {        
+    {
+        // Push UIAlert for empty fields
         UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Empty Fields"
                                                           message:@"Please enter more information"
                                                          delegate:nil
@@ -87,12 +89,15 @@
     }
     else
     {
+        // Create sequence from text fields
         Sequence *tempSequence = [[Sequence alloc]init];
         tempSequence.name = accessionField.text;
         tempSequence.sequence = outputField.text;
         tempSequence.header = header.text;
         tempSequence.notes = notes.text;
         tempSequence.included = true;
+        
+        // Add to Singleton's sequenceArray
         [sharedManager.sequenceArray addObject:tempSequence];
         
         //Close Pushed View
@@ -105,9 +110,12 @@
 //***Input Mode Switcher***
 - (IBAction)segmentedControlIndexChanged
 {
+    // Empty Fields
     accessionField.text = @"";
     header.text = @"";
     outputField.text = @"";
+    
+    // Determine which segment is selected
     if(modeSwitch.selectedSegmentIndex == 0)
     {
         [self showAccessionAndHideSequence];
